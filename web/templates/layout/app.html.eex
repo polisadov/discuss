@@ -10,6 +10,7 @@
     <title>Hello Discuss!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
@@ -21,9 +22,6 @@
     </div>
   </nav>
     <div class="container">
-
-
-        <span class="logo"></span>
 
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
