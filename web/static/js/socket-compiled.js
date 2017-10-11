@@ -3,9 +3,9 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import { Socket } from "phoenix";
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", { params: { token: window.userToken } });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -52,28 +52,26 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Or, remove it from the constructor if you don't care about
 // authentication.
 
-socket.connect()
+socket.connect();
 
-const createSocket = (topicId) => {
-    let channel = socket.channel(`comments:${topicId}`, {})
-    channel.join()
-        .receive("ok", resp => {
-            renderComments(resp.comments);
-        })
-        .receive("error", resp => {
-            console.log("Unable to join", resp)
-        })
+const createSocket = topicId => {
+    let channel = socket.channel(`comments:${topicId}`, {});
+    channel.join().receive("ok", resp => {
+        renderComments(resp.comments);
+    }).receive("error", resp => {
+        console.log("Unable to join", resp);
+    });
 
     document.querySelector('button').addEventListener('click', () => {
-        const content = document.querySelector('textarea').value
+        const content = document.querySelector('textarea').value;
 
-        channel.push('comment:add', {content: content})
+        channel.push('comment:add', { content: content });
     });
-}
+};
 
 function renderComments(comments) {
     const renderedComments = comments.map(comment => {
-       return `
+        return `
             <li class="collection-item">
                 ${comment.content}
             </li>
@@ -81,7 +79,8 @@ function renderComments(comments) {
     });
 
     document.querySelector('.collection').innerHTML = renderedComments.join('');
-
 }
 
 window.createSocket = createSocket;
+
+//# sourceMappingURL=socket-compiled.js.map
